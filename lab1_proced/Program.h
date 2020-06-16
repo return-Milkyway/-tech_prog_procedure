@@ -45,7 +45,6 @@ int Sum(diagol* d);
 int Sum(square* s);
 int Sum(matr *m);
 void Out_Sum(container *lst,ofstream &ofst);
-
 bool Compare(matr *first, matr *second);
 void Sort(container* c);
 struct container * swap(struct container *lst1, struct container *lst2, struct container *head);

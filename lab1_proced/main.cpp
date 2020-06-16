@@ -16,7 +16,6 @@ int main(int argc, char* argv[]) {
 	c= Init();
 	In(c, ifst);
 	ofst << "Filled container. " << endl;
-	
 	//Out(c, ofst);
 	Sort(c);
 	Out_Sum(c, ofst);

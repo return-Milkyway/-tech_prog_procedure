@@ -272,8 +272,3 @@ struct container * swap(struct container *lst1, struct container *lst2, struct c
   	return(head);
 }
 
-
-
-
-
-
