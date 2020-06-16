@@ -21,6 +21,8 @@ struct matr {
 		square s;
 		diagol d;
 	};
+	enum var_print{POSTROCHNO,POSTOLBZAM,ODNOMERNO,INCORRECT};//1,2,3
+	var_print variant;
 };
 	
 struct container {
