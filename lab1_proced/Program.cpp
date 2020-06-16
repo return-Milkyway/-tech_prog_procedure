@@ -208,7 +208,7 @@ int Sum(square& s) {
 	}
 	return sum;
 }
- 
+
 int Sum(matr &m){	
 	switch(m.k) {
 	case matr::key::SQUARE:
@@ -239,7 +239,33 @@ void Out_Sum(container *lst,ofstream &ofst){
 	    ofst<<"Sum_matr = " << Sum(*s)  << endl;
 	    p = p->next; 
 	  } while (p != lst); 
+}
 
+void Out_Square(container *lst,ofstream &ofst){
+	struct container *p;
+	p=lst;
+	int num=0;
+	do {
+	    num=num+1;
+	    p = p->next; 
+	} while (p != lst); 
+	ofst<<"Container contains " << num-1 	<< " elements." << endl;
+	ofst<<"Only square"<< endl;
+  	if(lst->next==lst){
+		return;
+	}
+  	p = lst->next;
+	do {
+		matr *s=p->cont;
+		switch(s->k) {
+	 	case matr::key::SQUARE:
+	 		Out(s->s, ofst);
+	 	}
+	 	//	break;
+	    //Out(*s,ofst);
+	    p = p->next; 
+	} while (p != lst); 
+	
 }
 
 bool Compare(matr *first, matr *second) {
@@ -266,7 +292,8 @@ void Sort(container* c){
 	 		}	
 		}
 	}
- }
+}
+
 struct container * swap(struct container *lst1, struct container *lst2, struct container *head){
 	struct container *prev1, *prev2, *next1, *next2;
 	prev1 = head;

@@ -1,4 +1,3 @@
-
 #include "Program.h"
 //using namespace std;
 int main(int argc, char* argv[]) {
@@ -19,6 +18,7 @@ int main(int argc, char* argv[]) {
 	//Out(c, ofst);
 	Sort(c);
 	Out_Sum(c, ofst);
+	Out_Square(c, ofst);
 	Clear(c);
 	ofst << "Empty container. " << endl;
 	Out(c, ofst);
