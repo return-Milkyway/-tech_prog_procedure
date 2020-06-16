@@ -159,7 +159,121 @@ struct container *  Init2(matr  *a) {
 
 }
 
+int Sum(diagol& d) {
+	int sum=0;
+	for (int count=0;count<d.y;count++){
+		for (int count2=0;count2<d.y;count2++){
+			if (count==count2){
+			sum=sum+d.x[count][count];
+			}
+		}
+	}
+	return sum;
+}
+
+int Sum(square& s) {
+	int sum=0;
+	for (int count=0;count<s.b;count++){
+		for (int count2=0;count2<s.b;count2++){
+			sum=sum+s.a[count][count2];
+		}
+	}
+	return sum;
+}
  
- 
- 
- 
+int Sum(matr &m){	
+	switch(m.k) {
+	case matr::key::SQUARE:
+		return Sum(m.s);
+	case matr::key::DIAGOL:
+ 		return Sum(m.d);
+ 	default:
+ 		return -1;
+	};
+}
+
+void Out_Sum(container *lst,ofstream &ofst){
+	struct container *p;
+	p=lst;
+	int num=0;
+	  do {
+	    num=num+1;
+	    p = p->next; 
+	  } while (p != lst); 
+	  ofst<<"Container contains " << num-1 	<< " elements." << endl;
+  	if(lst->next==lst){
+		return;
+	}
+  	p = lst->next;
+	  do {
+	    matr *s=p->cont;
+	    Out(*s,ofst);
+	    ofst<<"Sum_matr = " << Sum(*s)  << endl;
+	    p = p->next; 
+	  } while (p != lst); 
+
+}
+
+bool Compare(matr *first, matr *second) {
+	return Sum(*first) < Sum(*second);
+}
+
+void Sort(container* c){
+ 	struct container *p;
+	p = c->next;
+	int num=0;
+	do {
+	    num=num+1;
+	    p = p->next; 
+	} while (p != c); 
+	p = c->next; 
+	for (int count3=0;count3<num;count3++){
+		for (int count2=0;count2<num-1;count2++){
+			p=c->next;
+			for(int tmp=0;tmp<count2;tmp++){
+				p=p->next;
+			}			
+			if(Compare(p->cont, p->next->cont)){
+	 			c=swap(p,p->next,c);
+	 		}	
+		}
+	}
+ }
+struct container * swap(struct container *lst1, struct container *lst2, struct container *head){
+	struct container *prev1, *prev2, *next1, *next2;
+	prev1 = head;
+	prev2 = head;
+	while (prev1->next != lst1) // поиск узла предшествующего lst1
+    prev1 = prev1->next;
+  	while (prev2->next != lst2) // поиск узла предшествующего lst2
+    	prev2 = prev2->next;
+  	next1 = lst1->next; // узел следующий за lst1
+  	next2 = lst2->next; // узел следующий за lst2
+  	if (lst2 == next1){	
+    	lst2->next = lst1;
+    	lst1->next = next2;
+    	prev1->next = lst2;
+  	}
+	else if (lst1 == next2){
+    	lst1->next = lst2;
+    	lst2->next = next1;
+    	prev2->next = lst2;
+  	}
+	else{
+		prev1->next = lst2;
+    	lst2->next = next1;
+    	prev2->next = lst1;
+    	lst1->next = next2;
+  	}
+  	if (lst1 == head)
+    	return(lst2);
+  	if (lst2 == head)
+    	return(lst1);
+  	return(head);
+}
+
+
+
+
+
+
