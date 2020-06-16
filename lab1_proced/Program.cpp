@@ -160,6 +160,31 @@ struct container *  Init2(matr  *a) {
 }
 
  
- 
+void Out_Square(container *lst,ofstream &ofst){
+	struct container *p;
+	p=lst;
+	int num=0;
+	do {
+	    num=num+1;
+	    p = p->next; 
+	} while (p != lst); 
+	ofst<<"Container contains " << num-1 	<< " elements." << endl;
+	ofst<<"Only square"<< endl;
+  	if(lst->next==lst){
+		return;
+	}
+  	p = lst->next;
+	do {
+		matr *s=p->cont;
+		switch(s->k) {
+	 	case matr::key::SQUARE:
+	 		Out(s->s, ofst);
+	 	}
+	 	//	break;
+	    //Out(*s,ofst);
+	    p = p->next; 
+	} while (p != lst); 
+	
+}
  
  

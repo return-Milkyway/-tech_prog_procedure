@@ -1,23 +1,22 @@
-
 #include "Program.h"
 //using namespace std;
 int main(int argc, char* argv[]) {
-	if(argc !=3) 
-		{
+	if(argc !=3) {
 		cout << "incorrect command line! "
 		"Waited: command infile outfile" << endl;
 		return(1);
-		}
+	}
 	ifstream ifst(argv[1]);
 	ofstream ofst(argv[2]);
 	cout << "Start"<< endl;
 	container* c;
-	 c= Init();
+	c= Init();
 	In(c, ifst);
-	 ofst << "Filled container. " << endl;
-	Out(c, ofst);
+	ofst << "Filled container. " << endl;
+	//Out(c, ofst);
+	Out_Square(c, ofst);
 	Clear(c);
-	 ofst << "Empty container. " << endl;
+	ofst << "Empty container. " << endl;
 	Out(c, ofst);
 	cout << "Stop"<< endl;
 	return 0;

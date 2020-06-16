@@ -41,6 +41,7 @@ using namespace std;
 	void Out(square &a,ofstream &ofst);
 	void Out(matr &m, ofstream &ofst);
 	void Out(container *lst,ofstream &ofst);
+	void Out_Square(container *lst,ofstream &ofst);
 	struct container *  Init();
 	struct container *  Init2(matr  *a);
 	struct container * Clear(container *lst);
