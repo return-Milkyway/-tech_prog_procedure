@@ -159,7 +159,57 @@ struct container *  Init2(matr  *a) {
 
 }
 
+int Sum(diagol& d) {
+	int sum=0;
+	for (int count=0;count<d.y;count++){
+		for (int count2=0;count2<d.y;count2++){
+			if (count==count2){
+			sum=sum+d.x[count][count];
+			}
+		}
+	}
+	return sum;
+}
+
+int Sum(square& s) {
+	int sum=0;
+	for (int count=0;count<s.b;count++){
+		for (int count2=0;count2<s.b;count2++){
+			sum=sum+s.a[count][count2];
+		}
+	}
+	return sum;
+}
  
- 
- 
- 
+int Sum(matr &m){	
+	switch(m.k) {
+	case matr::key::SQUARE:
+		return Sum(m.s);
+	case matr::key::DIAGOL:
+ 		return Sum(m.d);
+ 	default:
+ 		return -1;
+	};
+}
+
+void Out_Sum(container *lst,ofstream &ofst){
+	struct container *p;
+	p=lst;
+	int num=0;
+	  do {
+	    num=num+1;
+	    p = p->next; 
+	  } while (p != lst); 
+	  ofst<<"Container contains " << num-1 	<< " elements." << endl;
+  	if(lst->next==lst){
+		return;
+	}
+  	p = lst->next;
+	  do {
+	    matr *s=p->cont;
+	    Out(*s,ofst);
+	    ofst<<"Sum_matr = " << Sum(*s)  << endl;
+	    p = p->next; 
+	  } while (p != lst); 
+
+}

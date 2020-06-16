@@ -15,7 +15,8 @@ int main(int argc, char* argv[]) {
 	 c= Init();
 	In(c, ifst);
 	 ofst << "Filled container. " << endl;
-	Out(c, ofst);
+	 Out_Sum(c, ofst);
+	//Out(c, ofst);
 	Clear(c);
 	 ofst << "Empty container. " << endl;
 	Out(c, ofst);
