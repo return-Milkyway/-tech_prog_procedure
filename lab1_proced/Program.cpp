@@ -34,7 +34,20 @@ void In(diagol &a, ifstream &ifst) {
  		ifst>>	a.x[count][count];
  	}
 }
- 
+
+void In(down_triangle &dt, ifstream &ifst) {
+	ifst.get();
+	ifst>>dt.y;
+ 	dt.x=new int;
+ 	int len=0;
+ 	for (int j=1;j<(dt.y);j++) {
+		len=len+(dt.y -j);		
+	}
+ 	len=(dt.y*dt.y)-len;
+	for (int count=0;count<len;count++){
+ 		ifst>>	dt.x[count];
+ 	}
+}
   void In(square &p, ifstream &ifst){
 	ifst.get();
 	p.a=new int*;
@@ -58,33 +71,20 @@ void In(diagol &a, ifstream &ifst) {
  			sp = new matr({});
  			sp->k = matr::key::SQUARE;
  			In(sp->s, ifst);
- 		//	return sp;
- 			break;
+ 			return sp;
  		case 2:
  			sp = new matr({});
  			sp->k = matr::key::DIAGOL;
  			In(sp->d, ifst);
- 			//return sp;
- 			break;
+ 			return sp;
+ 		case 3:
+ 			sp = new matr({});
+ 			sp->k = matr::key::DOWN_TRIANGLE;
+ 			In(sp->dt, ifst);
+ 			return sp;
  		default:
  		return 0;
  	}
- 	ifst >> k;
- 		switch(k) {
- 			case 1:	
-		 		sp->variant=matr::var_print::POSTROCHNO;
-		 		return sp;
-		 	case 2:	
-		 		sp->variant=matr::var_print::POSTOLBZAM;
-				 return sp;	
-		 	case 3:	
-		 		sp->variant=matr::var_print::ODNOMERNO;
-				 return sp;	
-			default:
- 				sp->variant=matr::var_print::INCORRECT;
- 				return sp;		
-		 		
-		 }
  }
  
  void Out(square &p, ofstream &ofst){
@@ -114,6 +114,26 @@ void In(diagol &a, ifstream &ifst) {
 	}
  }
  
+ 
+ 
+ void Out(down_triangle &dt, ofstream &ofst) {
+ 	ofst << "It is Down Triangle Matrix: len = " << dt.y
+	<< ", matr: = " <<endl;
+	int i=0;
+	for (int count=0;count<dt.y;count++){
+		for (int count2=0;count2<dt.y;count2++){
+			if (count<count2){
+				ofst<<"0 ";
+			}
+			else{
+			ofst<<dt.x[i]<<" ";
+			i=i+1;
+			}
+		}
+		ofst<<endl;
+	}
+ }
+ 
  void Out(matr &s, ofstream &ofst) {
 	 switch(s.k) {
 	 	case matr::key::SQUARE:
@@ -122,21 +142,15 @@ void In(diagol &a, ifstream &ifst) {
 	 	case matr::key::DIAGOL:
 	 		Out(s.d, ofst);
 	 		break;
+	 	case matr::key::DOWN_TRIANGLE:
+	 		Out(s.dt, ofst);
+	 		break;
 	 	default:
 	 		ofst << "Incorrect figure!" << endl;
  	};
- 	if (s.variant == 0)
-        ofst << "Print need POSTROCHNO"<<endl;
-    else if (s.variant == 1)
-         ofst << "Print need POSTOLBZAM"<<endl;
-    else if (s.variant == 2)
-         ofst << "Print need ODNOMERNO"<<endl;
-    else 
-         ofst << "Incorrect variant of print"<<endl;
  };
  
  void Out(container *lst,ofstream &ofst){ 
- 
 	struct container *p;
 	p=lst;
 	int num=0;
@@ -162,7 +176,6 @@ struct container *  Init(){
   c->prev=c; 
   return c;
 }
-
 struct container *  Init2(matr  *a) {
   struct container *c = new container;
   c->cont = a;
