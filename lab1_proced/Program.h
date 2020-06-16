@@ -16,21 +16,16 @@ using namespace std;
 		int** x;
   	};
   	
-  	struct down_triangle 
-	{
-		int y;
-		int* x;
-  	};
-  	
 	struct matr {
-	enum  key{SQUARE, DIAGOL,DOWN_TRIANGLE};
+	enum  key{SQUARE, DIAGOL};
 	key k;    
 	union 
 	{ 
 		square s;
 		diagol d;
-		down_triangle dt;
 	};
+	enum var_print{POSTROCHNO,POSTOLBZAM,ODNOMERNO,INCORRECT};//1,2,3
+	var_print variant;
 };
 	
 	 struct container
@@ -43,12 +38,9 @@ using namespace std;
  	struct container* In(container *lst,ifstream &ifst);
 	void In(square &a, ifstream &ifst);
 	void In(diagol &p, ifstream &ifst);
-	void In(down_triangle &dt,ofstream &ofst);
 	matr* In(ifstream &ifst);
 	void Out(diagol &p, ofstream &ofst);
 	void Out(square &a,ofstream &ofst);
-	void Out(down_triangle &dt,ofstream &ofst);
-	
 	void Out(matr &m, ofstream &ofst);
 	void Out(container *lst,ofstream &ofst);
 	struct container *  Init();
