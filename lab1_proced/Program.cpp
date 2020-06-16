@@ -58,15 +58,33 @@ void In(diagol &a, ifstream &ifst) {
  			sp = new matr({});
  			sp->k = matr::key::SQUARE;
  			In(sp->s, ifst);
- 			return sp;
+ 		//	return sp;
+ 			break;
  		case 2:
  			sp = new matr({});
  			sp->k = matr::key::DIAGOL;
  			In(sp->d, ifst);
- 			return sp;
+ 			//return sp;
+ 			break;
  		default:
  		return 0;
  	}
+ 	ifst >> k;
+ 		switch(k) {
+ 			case 1:	
+		 		sp->variant=matr::var_print::POSTROCHNO;
+		 		return sp;
+		 	case 2:	
+		 		sp->variant=matr::var_print::POSTOLBZAM;
+				 return sp;	
+		 	case 3:	
+		 		sp->variant=matr::var_print::ODNOMERNO;
+				 return sp;	
+			default:
+ 				sp->variant=matr::var_print::INCORRECT;
+ 				return sp;		
+		 		
+		 }
  }
  
  void Out(square &p, ofstream &ofst){
@@ -107,9 +125,18 @@ void In(diagol &a, ifstream &ifst) {
 	 	default:
 	 		ofst << "Incorrect figure!" << endl;
  	};
+ 	if (s.variant == 0)
+        ofst << "Print need POSTROCHNO"<<endl;
+    else if (s.variant == 1)
+         ofst << "Print need POSTOLBZAM"<<endl;
+    else if (s.variant == 2)
+         ofst << "Print need ODNOMERNO"<<endl;
+    else 
+         ofst << "Incorrect variant of print"<<endl;
  };
  
  void Out(container *lst,ofstream &ofst){ 
+ 
 	struct container *p;
 	p=lst;
 	int num=0;
@@ -135,6 +162,7 @@ struct container *  Init(){
   c->prev=c; 
   return c;
 }
+
 struct container *  Init2(matr  *a) {
   struct container *c = new container;
   c->cont = a;
