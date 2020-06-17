@@ -1,26 +1,23 @@
 Filled container. 
-Container contains 4 elements.
-It is Diagol Matrix: len = 3, matr: = 
-3 0 0 
-0 0 0 
-0 0 3735896 
+Container contains 3 elements.
+It is Down Triangle Matrix: len = 3, matr: = 
+1 0 0 
+2 3 0 
+3 -1 1919252082 
+Print need ODNOMERNO
+Sum_matr = 1919252090
+It is Diagol Matrix: len = 3, matrix: = 
+1 0 0 
+0 2 0 
+0 0 3 
 Print need POSTOLBZAM
-Sum_matr = 3735899
-It is Diagol Matrix: len = 3, matr: = 
-2 0 0 
-0 3 0 
-0 0 2 
-Print need POSTROCHNO
-Sum_matr = 7
-It is Diagol Matrix: len = 2, matr: = 
+Sum_matr = 6
+It is Diagol Matrix: len = 2, matrix: = 
 2 0 
 0 1 
 Print need POSTROCHNO
 Sum_matr = 3
-It is Diagol Matrix: len = -3, matr: = 
-Print need POSTROCHNO
-Sum_matr = 0
-Container contains 4 elements.
+Container contains 3 elements.
 Only square
 Empty container. 
 Container contains 0 elements.
