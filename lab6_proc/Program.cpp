@@ -1,23 +1,23 @@
 #include "Program.h"
 using namespace std;
 	 
-int In(container *lst,ifstream &ifst) {
+int In(container *head,ifstream &ifst) {
 	struct container *last = Init2(In(ifst));
 	struct container *tmp;
-	if(last->cont==0){
-		cout<<"Incorrect input"<<endl;
+	if(last->cont == 0){
+		cout << "No completed: incorrect input" << endl;
 		return 0;
 	}
-	tmp = lst->next; 
-	lst->next = last; 
+	tmp = head->next; 
+	head->next = last; 
 	last->next = tmp; 
-	lst->prev = last;
-	last->prev = lst;
+	head->prev = last;
+	last->prev = head;
 	while(!ifst.eof()) {			
 		struct container *newItem = Init2(In(ifst));
 		struct container *tmp;
 		if(newItem->cont==0){
-			cout<<"Incorrect input"<<endl;
+			cout<<"No completed: incorrect input"<<endl;
 			return 0;
 		}
 		struct container *tmp2;		  
@@ -25,7 +25,7 @@ int In(container *lst,ifstream &ifst) {
 		last->next = newItem;
 		newItem->next = tmp;
 		newItem->prev=last;
-		lst->prev=newItem;
+		head->prev=newItem;
 		last=newItem;
 	}
 	return(1);
@@ -34,7 +34,7 @@ int In(container *lst,ifstream &ifst) {
 int In(diagol &d, ifstream &ifst) {
 	ifst.get();
 	ifst >> d.razm;
-	if ((d.razm) > (1000)){
+	if ((d.razm) > (1000)||(d.razm) < (1)){
 		return 0;	
 	}
  	d.arr = new int*;
@@ -50,8 +50,8 @@ int In(diagol &d, ifstream &ifst) {
 int In(down_triangle &dt, ifstream &ifst) {
 	ifst.get();
 	ifst >> dt.razm;
-	if (dt.razm > (1000)){
-	return 0;	
+	if ((dt.razm) > (1000)||(dt.razm) < (1)){
+		return 0;	
 	}
  	dt.arr = new int;
  	int len = 0;
@@ -69,7 +69,7 @@ int In(square &s, ifstream &ifst) {
 	ifst.get();
 	s.arr = new int*;
 	ifst >> s.razm;
-	if (s.razm > (1000)) {
+	if ((s.razm) > (1000)||(s.razm) < (1)){
 		return 0;	
 	}
 	for (int count = 0; count < s.razm; count++) {
@@ -108,7 +108,7 @@ matr* In(ifstream &ifst) {
 			return 0;
  	}
  	if (test==0) {
-		cout<< "incorrect input"<<endl;
+		cout<< "No completed: incorrect input"<<endl;
 		mtrx=0;
 		return mtrx;
 	}
@@ -131,7 +131,7 @@ matr* In(ifstream &ifst) {
  
 void Out(square &s, ofstream &ofst) {
 	ofst << "It is Square matrix: len = "
-	 << s.razm << ", matr = " << endl;
+	 << s.razm << ", matrix = " << endl;
 	 for (int count = 0; count < s.razm; count++){
 		for (int count2 = 0; count2 < s.razm; count2++){
 			ofst << s.arr[count][count2] << " ";
@@ -142,7 +142,7 @@ void Out(square &s, ofstream &ofst) {
  
 void Out(diagol &d, ofstream &ofst) {
  	ofst << "It is Diagol Matrix: len = " << d.razm
-	<< ", matr: = " << endl;
+	<< ", matrix: = " << endl;
 	for (int count = 0; count < d.razm; count++){
 		for (int count2 = 0;count2<d.razm; count2++){
 			if (count != count2){
@@ -198,25 +198,24 @@ void Out(matr &mtrx, ofstream &ofst) {
          ofst << "Incorrect variant of print"<<endl;
  };
  
-void Out(container *lst,ofstream &ofst) { 
+void Out(container *head,ofstream &ofst) { 
 	struct container *p;
-	
-	p = lst;
+	p = head;
 	int num = 0;
 	do {
 		num = num + 1;
 		p = p->next; 
-	} while (p != lst); 
+	} while (p != head); 
 	ofst << "Container contains " << num-1 << " elements." << endl;
-	if(lst->next == lst){
+	if(head->next == head){
 		return;
 	}
-  	p = lst->next;
+  	p = head->next;
 	do {
 		matr *mtrx = p->cont;
 		Out(*mtrx,ofst);
 		p = p->next; 
-	} while (p != lst); 
+	} while (p != head); 
 }
 
 struct container *  Init() {
@@ -297,41 +296,41 @@ int Sum(matr &mtrx) {
 	};
 }
 
-void Out_Sum(container *lst,ofstream &ofst) {
+void Out_Sum(container *head,ofstream &ofst) {
 	struct container *p;
-	p = lst;
+	p = head;
 	int num = 0;
 	do {
 		num = num + 1;
 		p = p->next; 
-	} while (p != lst); 
+	} while (p != head); 
 	ofst << "Container contains " << num-1 	<< " elements." << endl;
-	if(lst->next == lst) {
-	return;
+	if(head->next == head) {
+		return;
 	}
-  	p = lst->next;
+  	p = head->next;
 	do {
 	    matr *mtrx = p->cont;
 	    Out(*mtrx,ofst);
 	    ofst<<"Sum_matr = " << Sum(*mtrx)  << endl;
 	    p = p->next; 
-	} while (p != lst); 
+	} while (p != head); 
 }
 
-void Out_Square(container *lst,ofstream &ofst) {
+void Out_Square(container *head,ofstream &ofst) {
 	struct container *p;
-	p = lst;
+	p = head;
 	int num = 0;
 	do {
 	    num = num+1;
 	    p = p->next; 
-	} while (p != lst); 
+	} while (p != head); 
 	ofst << "Container contains " << num-1 	<< " elements." << endl;
 	ofst << "Only square" << endl;
-	if(lst->next == lst){
+	if(head->next == head){
 		return;
 	}
-  	p = lst->next;
+  	p = head->next;
 	do {
 		matr *mtrx = p->cont;
 		switch(mtrx->k) {
@@ -339,8 +338,7 @@ void Out_Square(container *lst,ofstream &ofst) {
 	 		Out(mtrx->s, ofst);
 	 	}
 	    p = p->next; 
-	} while (p != lst); 
-	
+	} while (p != head); 
 }
 
 bool Compare(matr *first, matr *second) {
@@ -414,4 +412,11 @@ struct container * Swap(struct container *lst1, struct container *lst2, struct c
     	return(lst1);
   	return(head);
 }
-
+bool FileIsExist(string filePath) {
+    bool isExist = false;
+    std::ifstream fin(filePath.c_str());
+    if(fin.is_open())
+        isExist = true;
+    fin.close();
+    return isExist;
+}
