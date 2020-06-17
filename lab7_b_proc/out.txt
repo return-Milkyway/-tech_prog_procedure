@@ -1,0 +1,68 @@
+Filled container. 
+Multimethod.
+DIAGOL and DIAGOL.
+It is Diagol Matrix: len = 2, matr: = 
+2 0 
+0 1 
+Print need POSTROCHNO
+It is Diagol Matrix: len = 2, matr: = 
+2 0 
+0 1 
+Print need POSTROCHNO
+
+DIAGOL and DIAGOL.
+It is Diagol Matrix: len = 2, matr: = 
+2 0 
+0 1 
+Print need POSTROCHNO
+It is Diagol Matrix: len = 3, matr: = 
+1 0 0 
+0 2 0 
+0 0 3 
+Print need POSTOLBZAM
+
+DIAGOL and DOWN_TRIANGLE.
+It is Diagol Matrix: len = 2, matr: = 
+2 0 
+0 1 
+Print need POSTROCHNO
+It is Down Triangle Matrix: len = 2, matr: = 
+1 0 
+2 3 
+Print need ODNOMERNO
+
+DIAGOL and DIAGOL.
+It is Diagol Matrix: len = 3, matr: = 
+1 0 0 
+0 2 0 
+0 0 3 
+Print need POSTOLBZAM
+It is Diagol Matrix: len = 3, matr: = 
+1 0 0 
+0 2 0 
+0 0 3 
+Print need POSTOLBZAM
+
+DIAGOL and DOWN_TRIANGLE.
+It is Diagol Matrix: len = 3, matr: = 
+1 0 0 
+0 2 0 
+0 0 3 
+Print need POSTOLBZAM
+It is Down Triangle Matrix: len = 2, matr: = 
+1 0 
+2 3 
+Print need ODNOMERNO
+
+DOWN_TRIANGLE and DOWN_TRIANGLE.
+It is Down Triangle Matrix: len = 2, matr: = 
+1 0 
+2 3 
+Print need ODNOMERNO
+It is Down Triangle Matrix: len = 2, matr: = 
+1 0 
+2 3 
+Print need ODNOMERNO
+
+Empty container. 
+Container contains 0 elements.
